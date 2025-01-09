@@ -1,0 +1,30 @@
+# pnpm lint:check, pnpm format:check, pnpm:type-checkを順次動かして問題なければ✅を出力
+
+# pnpm lint:check
+echo "Running lint:check"
+pnpm lint:check
+if [ $? -ne 0 ]; then
+  echo "lint:check failed"
+  exit 1
+fi
+echo "lint:check passed"
+
+# pnpm format:check
+echo "Running format:check"
+pnpm format:check
+if [ $? -ne 0 ]; then
+  echo "format:check failed"
+  exit 1
+fi
+echo "format:check passed"
+
+# pnpm type-check
+echo "Running type-check"
+pnpm type-check
+if [ $? -ne 0 ]; then
+  echo "type-check failed"
+  exit 1
+fi
+echo "type-check passed"
+
+echo "✅ All checks passed"
