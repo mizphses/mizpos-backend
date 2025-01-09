@@ -30,7 +30,8 @@ $ pnpm dlx wrangler migrate:local # local
 $ pnpm dlx wrangler migrate:remote # remote
 ```
 
-### 3. 環境変数を編集 
+### 3. 環境変数を編集
+
 ※ それぞれ適宜、openssl randで生成したりGoogle Consoleからもらってきてください
 
 ```sh
