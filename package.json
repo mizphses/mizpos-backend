@@ -5,7 +5,7 @@
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",
-    "gen:cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
     "fix": "run-p format lint:fix",
     "format": "run-p format:prettier format:prisma",
     "check": "run-p format:check lint:check type-check",
@@ -19,12 +19,12 @@
     "migration:write": "prisma migrate diff --script --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --output",
     "migrate:dev": "wrangler d1 migrations apply MIZPOS --local",
     "migrate:remote": "wrangler d1 migrations apply MIZPOS --remote",
-    "gen": "run-p gen:*",
+    "gen": "run-p gen:* cf-typegen",
     "gen:client": "prisma generate",
     "seed:dev": "node ./prisma/seed.js",
     "type-check": "tsc --noEmit",
     "prepare": "husky",
-    "postinstall": "run-p gen:*"
+    "postinstall": "run-p gen:* cf-typegen"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.3",
