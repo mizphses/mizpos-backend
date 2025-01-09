@@ -1,16 +1,55 @@
 {
-  "name": "mizpos",
+  "name": "pos",
   "scripts": {
+    "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy --minify",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "start": "wrangler dev",
+    "test": "vitest",
+    "gen:cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "fix": "run-p format lint:fix",
+    "format": "run-p format:prettier format:prisma",
+    "check": "run-p format:check lint:check type-check",
+    "format:prettier": "prettier --write src",
+    "format:prisma": "prisma format",
+    "format:check": "prettier --check src",
+    "lint:check": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "migration:create": "wrangler d1 migrations create MIZPOS",
+    "migration:write-init": "prisma migrate diff --script --from-empty --to-schema-datamodel ./prisma/schema.prisma --output",
+    "migration:write": "prisma migrate diff --script --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --output",
+    "migrate:dev": "wrangler d1 migrations apply MIZPOS --local",
+    "migrate:remote": "wrangler d1 migrations apply MIZPOS --remote",
+    "gen": "run-p gen:*",
+    "gen:client": "prisma generate",
+    "seed:dev": "node ./prisma/seed.js",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky"
   },
   "dependencies": {
-    "hono": "^4.6.16"
+    "@anthropic-ai/sdk": "^0.27.3",
+    "@hono/oauth-providers": "^0.6.2",
+    "@prisma/client": "^6.2.1",
+    "hono": "^4.6.16",
+    "jose": "^5.9.6",
+    "prisma-markdown": "^1.0.9",
+    "typescript": "^5.7.3"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20241230.0",
-    "wrangler": "^3.96.0"
+    "@cloudflare/workers-types": "^4.20250109.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/adapter-d1": "^5.22.0",
+    "biome": "^0.3.3",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "js-sha3": "^0.9.3",
+    "npm-run-all2": "^6.2.6",
+    "prettier": "^3.4.2",
+    "prisma": "^6.2.1",
+    "typescript-eslint": "^8.19.1",
+    "wrangler": "^3.100.0"
   },
-  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
+  "volta": {
+    "node": "22.13.0"
+  }
 }

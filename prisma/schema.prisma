@@ -1,0 +1,45 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator markdown {
+  provider = "prisma-markdown"
+  output   = "../docs/ERD.md"
+  title    = "DB Schema for MIZPOS"
+}
+
+model User {
+  id          String       @id @default(cuid())
+  name        String
+  email       String       @unique
+  password    String?
+  role        String       @default("USER")
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  googleOauth GoogleOauth?
+  githubOauth GitHubOauth?
+}
+
+model GoogleOauth {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model GitHubOauth {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  userId    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id])
+}
