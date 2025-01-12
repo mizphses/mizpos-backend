@@ -44,7 +44,7 @@ erDiagram
   String userId FK "nullable"
   String itemsList
   String status
-  String stripeId "nullable"
+  String stripeId
   DateTime createdAt
   DateTime updatedAt
 }
