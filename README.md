@@ -1,6 +1,8 @@
 # mizpos
 
-いい感じのヘッドレスECサイト
+いい感じのヘッドレスECシステム。Cloudflare Worker + D1 + Prisma + Honoで動くよ（色々他のパッケージも入れてるよ）。
+
+決済システム: Stripe（クレカのみ想定）
 
 ## 根拠法
 
