@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -41,7 +45,7 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Lint
+      - name: Prettier Check
         run: pnpm run format:check
 
   type-check:
@@ -57,5 +61,5 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install
-      - name: Lint
+      - name: Type Check
         run: pnpm run type-check
