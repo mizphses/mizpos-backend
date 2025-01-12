@@ -47,3 +47,12 @@ GITHUB_SECRET="goibjvnrfjughjgfhjitfvbghui98uyfdfgtyhu"
 STRIPE_API_KEY=sk_gudvkfhcnserdijglhjwierufhbnrsuisfghveriokdfjnwrsuijfnvbirsetjhgv
 STRIPE_WEBHOOK_SECRET=whsec_dvolijrekdflgjvdpiolsfdsfviukyjhwdceujikhncrdwsiujhnkrdsunjh
 ```
+
+なお、GitHub側の仕様の都合（ `GITHUB_*` が予約語）から、Actions Workflowsを使用する際、以下の通り読み替えてください。
+
+```
+GITHUB_ID: ${{ secrets.GH_OAUTH_ID }}
+GITHUB_SECRET: ${{ secrets.GH_OAUTH_SECRET }}
+```
+
+にそれぞれ振り当てています。

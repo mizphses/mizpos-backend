@@ -1,7 +1,18 @@
-name: CI
+name: Deploy & Release
 
 on:
   workflow_dispatch:
+    inputs:
+      with_d1:
+        description: 'Deploy D1'
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
 
 jobs:
   build:
@@ -45,8 +56,8 @@ jobs:
           SALT: ${{ secrets.SALT }}
           GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
           GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
-          GITHUB_ID: ${{ secrets.GITHUB_ID }}
-          GITHUB_SECRET: ${{ secrets.GITHUB_SECRET }}
+          GITHUB_ID: ${{ secrets.GH_OAUTH_ID }}
+          GITHUB_SECRET: ${{ secrets.GH_OAUTH_SECRET }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
           STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
@@ -59,11 +70,35 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
-        uses: ./.github/actions/setup
-
       - uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: d1 migrations apply --remote MIZPOS
+
+  release:
+    runs-on: ubuntu-latest
+    name: Release
+    outputs:
+      release_tag: ${{ steps.release_tag.outputs.VERSION }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate release tag
+        id: release_tag
+        run: |
+          VERSION=$(date +'%Y.%m.%d.%H%M')
+          echo "VERSION=v$VERSION" >> $GITHUB_OUTPUT
+        env:
+          TZ: 'Asia/Tokyo'
+
+      - name: Release
+        run: |
+          gh release create ${{ steps.release_tag.outputs.VERSION }} \
+            --title "Release ${{ steps.release_tag.outputs.VERSION }}" \
+            --generate-notes \
+            --prerelease=false \
+            --target main
+            --latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
