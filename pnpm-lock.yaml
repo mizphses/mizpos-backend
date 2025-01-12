@@ -1428,8 +1428,8 @@ packages:
   lodash@3.10.1:
     resolution: {integrity: sha512-9mDDwqVIma6OZX79ZlDACZl8sBm0TEnkf99zV3iMA4GzkIT/9hiqP5mY0HoT1iNLCrKc/R1HByV+yJfRWVJryQ==}
 
-  lodash@4.17.21:
-    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+  lodash@4.17.12:
+    resolution: {integrity: sha512-+CiwtLnsJhX03p20mwXuvhoebatoh5B3tt+VvYlrPgZC1g36y+RRbkufX95Xa+X4I59aWEacDFYwnJZiyBh9gA==}
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -3343,7 +3343,7 @@ snapshots:
     dependencies:
       core-js: 2.6.12
       kaiser: 0.0.4
-      lodash: 4.17.21
+      lodash: 4.17.12
       regenerator-runtime: 0.9.6
 
   ecc-jsbn@0.1.2:
@@ -3766,7 +3766,7 @@ snapshots:
 
   lodash@3.10.1: {}
 
-  lodash@4.17.21: {}
+  lodash@4.17.12: {}
 
   magic-string@0.25.9:
     dependencies:
@@ -3975,7 +3975,7 @@ snapshots:
   request-promise@3.0.0:
     dependencies:
       bluebird: 3.7.2
-      lodash: 4.17.21
+      lodash: 4.17.12
       request: 2.88.2
 
   request@2.88.2:
