@@ -103,7 +103,7 @@ jobs:
             --title "Release ${{ steps.release_tag.outputs.VERSION }}" \
             --generate-notes \
             --prerelease=false \
-            --target main
+            --target main \
             --latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
