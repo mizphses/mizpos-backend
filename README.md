@@ -53,11 +53,31 @@ STRIPE_API_KEY=sk_gudvkfhcnserdijglhjwierufhbnrsuisfghveriokdfjnwrsuijfnvbirsetj
 STRIPE_WEBHOOK_SECRET=whsec_dvolijrekdflgjvdpiolsfdsfviukyjhwdceujikhncrdwsiujhnkrdsunjh
 ```
 
-なお、GitHub側の仕様の都合（ `GITHUB_*` が予約語）から、Actions Workflowsを使用する際、以下の通り読み替えてください。
+## Deploy
 
-```
-GITHUB_ID: ${{ secrets.GH_OAUTH_ID }}
-GITHUB_SECRET: ${{ secrets.GH_OAUTH_SECRET }}
+以下の環境変数を設定して、Deploy & Releaseを回してください。
+
+なお、GitHub側の仕様の都合（ `GITHUB_*` が予約語）から、読み替えています。
+
+```sh
+TOKEN_KEY="w9P4xezts1y93GTSMb0e9Jzxq2mycGcZHNYteccc4cC43WW75B8uHx+K3GSAZ2JB"
+SALT="ynq/ak7eNfby27NYewrjXLi8cwEY8POvEMkxzJGRAJb7lBs7Gb+fkorcaaXIryQ3"
+JWT_SECRET="nLTS0laXc+LNjoH61x/uVpXLSD1Pj1HqN+QyyHyX/AJHbjNGzw6n/HYDZFDwILBt"
+GOOGLE_ID="hogehoge-hogehoge.apps.googleusercontent.com"
+GOOGLE_SECRET="HOGEHOGE-SECRET"
+GH_OAUTH_ID="xxxxxxx"
+GH_OAUTH_SECRET="goibjvnrfjughjgfhjitfvbghui98uyfdfgtyhu"
+STRIPE_API_KEY=sk_gudvkfhcnserdijglhjwierufhbnrsuisfghveriokdfjnwrsuijfnvbirsetjhgv
+STRIPE_WEBHOOK_SECRET=whsec_dvolijrekdflgjvdpiolsfdsfviukyjhwdceujikhncrdwsiujhnkrdsunjh
+CLOUDFLARE_API_TOKEN=hogehoge
+CLOUDFLARE_ACCOUNT_ID=fugafuga
 ```
 
-にそれぞれ振り当てています。
+(メモ)
+
+Cloudflareのトークンは、ダッシュボードから「Workersを編集」で作成されるものに、D1の編集権限を付与したものを使用してください。
+
+## 問い合わせ
+mizphses@gmail.com または Issue上で。
+
+ISCライセンスで提供しています。As isです。返事も保証しません。
