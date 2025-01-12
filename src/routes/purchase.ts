@@ -104,7 +104,6 @@ pay.post('/checkout', async (c) => {
     })
   }
 
-  // stripeでcheckout
   const stripe = new Stripe(c.env.STRIPE_API_KEY)
   const session = await stripe.checkout.sessions.create({
     payment_method_types: ['card'],
@@ -113,7 +112,7 @@ pay.post('/checkout', async (c) => {
         currency: 'jpy',
         product_data: {
           name: items.name,
-          images: [items.image ?? 'https://placehold.jp/150x150.png'],
+          images: [items.image ?? 'https://placehold.jp/150x150.png'], // いい感じの画像にする
         },
         unit_amount: items.price,
       },
@@ -124,8 +123,8 @@ pay.post('/checkout', async (c) => {
       allowed_countries: ['JP'],
     },
     client_reference_id: cartId,
-    success_url: `http://localhost:8787/pay/success/${cartId}`,
-    cancel_url: `http://localhost:8787/pay/cancel/${cartId}`,
+    success_url: `http://localhost:8787/pay/success/${cartId}`, // 本番にするときはbaseurlいじる
+    cancel_url: `http://localhost:8787/pay/cancel/${cartId}`, // 本番にするときはbaseurlいじる
   })
 
   return c.json({
@@ -166,7 +165,6 @@ pay.get('/success/:cartId', async (c) => {
     return acc + item.price * item.count
   }, 0)
 
-  // stripeで状況確認
   const stripe = new Stripe(c.env.STRIPE_API_KEY)
   const session = await stripe.checkout.sessions.retrieve(cart.stripeId || '')
 
@@ -176,7 +174,7 @@ pay.get('/success/:cartId', async (c) => {
     status: session.status,
   })
 
-  // {"total":10000,"items":[{"id":"cm5tq4p370000x40c3x0g0nmt","name":"タイトル１","price":10000,"description":"サンプル商品です","image":null,"visible":true,"createdAt":"2025-01-12T14:42:10.045Z","updatedAt":"2025-01-12T14:42:10.045Z","count":1}],"status":"complete"}
+  // 出力 {"total":10000,"items":[{"id":"cm5tq4p370000x40c3x0g0nmt","name":"タイトル１","price":10000,"description":"サンプル商品です","image":null,"visible":true,"createdAt":"2025-01-12T14:42:10.045Z","updatedAt":"2025-01-12T14:42:10.045Z","count":1}],"status":"complete"}
 })
 
 pay.get('/cancel/:cartId', async (c) => {

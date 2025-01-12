@@ -34,65 +34,6 @@ payment.post('/webhook', async (c) => {
 
         break
       }
-      // case 'charge.succeeded': {
-      //   await new Promise((resolve) => setTimeout(resolve, 1000))
-      //   const cartId = await prisma.cart.findFirst({
-      //     where: {
-      //       stripeId: event.data.object.id,
-      //     },
-      //   })
-      //   if (!cartId) {
-      //     return c.text('Error! Cart not found', 400)
-      //   }
-
-      //   const cart = await prisma.cart.update({
-      //     where: {
-      //       id: cartId.id,
-      //     },
-      //     data: {
-      //       status: 'paid',
-      //     },
-      //   })
-      //   const items: {
-      //     count: number
-      //     id: string
-      //     name: string
-      //     price: number
-      //     description?: string | null
-      //     image?: string | null
-      //   }[] = JSON.parse(cart.itemsList)
-
-      //   await prisma.orders.create({
-      //     data: {
-      //       cartId: cart.id,
-      //       total: items.reduce((acc: number, item: { price: number; count: number }) => {
-      //         return acc + item.price * item.count
-      //       }, 0),
-      //     },
-      //   })
-      // }
-      // case 'payment_intent.payment_failed': {
-      //   await new Promise((resolve) => setTimeout(resolve, 1000))
-
-      //   const cartId = await prisma.cart.findFirst({
-      //     where: {
-      //       stripeId: event.data.object.id,
-      //     },
-      //   })
-      //   if (!cartId) {
-      //     return c.text('Error! Cart not found', 400)
-      //   }
-
-      //   await prisma.cart.update({
-      //     where: {
-      //       id: cartId.id,
-      //     },
-      //     data: {
-      //       status: 'failed',
-      //     },
-      //   })
-      //   break
-      // }
 
       default:
         return c.text('Error! Not registered operation', 400)
