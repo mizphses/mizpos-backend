@@ -1,6 +1,11 @@
-# mizpos
+# mizpos-backend
 
-いい感じのヘッドレスECシステム。Cloudflare Worker + D1 + Prisma + Honoで動くよ（色々他のパッケージも入れてるよ）。
+[![CI](https://github.com/mizphses/mizpos-backend/actions/workflows/ci.yml/badge.svg)](https://github.com/mizphses/mizpos-backend/actions/workflows/ci.yml)
+[![Deploy & Release](https://github.com/mizphses/mizpos-backend/actions/workflows/deploy.yml/badge.svg)](https://github.com/mizphses/mizpos-backend/actions/workflows/deploy.yml)
+
+いい感じのヘッドレスECシステム。
+
+コアなところとしては、Cloudflare Worker + D1 + Prisma + Honoで動くよ。（Stripeとかeslintとかも入ってるけど）
 
 決済システム: Stripe（クレカのみ想定）
 
