@@ -32,7 +32,7 @@ $ pnpm dlx wrangler migrate:remote # remote
 
 ### 3. 環境変数を編集
 
-※ それぞれ適宜、openssl randで生成したりGoogle Consoleからもらってきてください
+※ それぞれ適宜、openssl randで生成したりGoogle Consoleからもらってきてください。テキトーにタイプして生成してます。
 
 ```sh
 TOKEN_KEY="w9P4xezts1y93GTSMb0e9Jzxq2mycGcZHNYteccc4cC43WW75B8uHx+K3GSAZ2JB"
@@ -40,4 +40,8 @@ SALT="ynq/ak7eNfby27NYewrjXLi8cwEY8POvEMkxzJGRAJb7lBs7Gb+fkorcaaXIryQ3"
 JWT_SECRET="nLTS0laXc+LNjoH61x/uVpXLSD1Pj1HqN+QyyHyX/AJHbjNGzw6n/HYDZFDwILBt"
 GOOGLE_ID="hogehoge-hogehoge.apps.googleusercontent.com"
 GOOGLE_SECRET="HOGEHOGE-SECRET"
+GITHUB_ID="xxxxxxx"
+GITHUB_SECRET="goibjvnrfjughjgfhjitfvbghui98uyfdfgtyhu"
+STRIPE_API_KEY=sk_gudvkfhcnserdijglhjwierufhbnrsuisfghveriokdfjnwrsuijfnvbirsetjhgv
+STRIPE_WEBHOOK_SECRET=whsec_dvolijrekdflgjvdpiolsfdsfviukyjhwdceujikhncrdwsiujhnkrdsunjh
 ```
