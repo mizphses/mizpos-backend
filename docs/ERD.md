@@ -29,8 +29,38 @@ erDiagram
   DateTime createdAt
   DateTime updatedAt
 }
+"Items" {
+  String id PK
+  String name
+  Int price
+  String description "nullable"
+  String image "nullable"
+  Boolean visible
+  DateTime createdAt
+  DateTime updatedAt
+}
+"Cart" {
+  String id PK
+  String userId FK "nullable"
+  String itemsList
+  String status
+  String stripeId "nullable"
+  DateTime createdAt
+  DateTime updatedAt
+}
+"Orders" {
+  String id PK
+  String userId FK "nullable"
+  Int total
+  DateTime createdAt
+  DateTime updatedAt
+  String cartId FK
+}
 "GoogleOauth" |o--|| "User" : user
 "GitHubOauth" |o--|| "User" : user
+"Cart" }o--o| "User" : user
+"Orders" }o--o| "User" : user
+"Orders" }o--|| "Cart" : cart
 ```
 
 ### `User`
@@ -61,3 +91,36 @@ erDiagram
   - `userId`: 
   - `createdAt`: 
   - `updatedAt`: 
+
+### `Items`
+
+**Properties**
+  - `id`: 
+  - `name`: 
+  - `price`: 
+  - `description`: 
+  - `image`: 
+  - `visible`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+
+### `Cart`
+
+**Properties**
+  - `id`: 
+  - `userId`: 
+  - `itemsList`: 
+  - `status`: 
+  - `stripeId`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+
+### `Orders`
+
+**Properties**
+  - `id`: 
+  - `userId`: 
+  - `total`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+  - `cartId`: 

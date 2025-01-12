@@ -8,5 +8,7 @@ interface CloudflareBindings {
 	GITHUB_ID: string;
 	GITHUB_SECRET: string;
 	JWT_SECRET: string;
+	STRIPE_API_KEY: string;
+	STRIPE_WEBHOOK_SECRET: string;
 	DB: D1Database;
 }

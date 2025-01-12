@@ -24,6 +24,8 @@ model User {
   updatedAt   DateTime     @updatedAt
   googleOauth GoogleOauth?
   githubOauth GitHubOauth?
+  cart        Cart[]
+  orders      Orders[]
 }
 
 model GoogleOauth {
@@ -42,4 +44,38 @@ model GitHubOauth {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   user      User     @relation(fields: [userId], references: [id])
+}
+
+model Items {
+  id          String   @id @default(cuid())
+  name        String
+  price       Int
+  description String?
+  image       String?
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Cart {
+  id        String   @id @default(cuid())
+  userId    String?
+  itemsList String
+  status    String   @default("pending")
+  stripeId  String   @default("")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User?    @relation(fields: [userId], references: [id])
+  orders    Orders[]
+}
+
+model Orders {
+  id        String   @id @default(cuid())
+  userId    String?
+  total     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  cartId    String
+  user      User?    @relation(fields: [userId], references: [id])
+  cart      Cart     @relation(fields: [cartId], references: [id])
 }
