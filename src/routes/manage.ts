@@ -45,7 +45,10 @@ manage.post('/items', async (c) => {
   const prisma = new PrismaClient({ adapter })
 
   const item = await prisma.items.create({
-    data: data,
+    data: {
+      ...data,
+      price: Number(data.price),
+    },
   })
 
   return c.json({
